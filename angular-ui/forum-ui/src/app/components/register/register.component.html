@@ -1,0 +1,13 @@
+<div class="flex flex-col items-center justify-center min-h-screen bg-gray-900 p-6"
+  style="min-height: calc(100vh - 3.5rem)">
+  <form (submit)="register()" class="bg-gray-800 p-6 rounded-lg shadow-md w-full max-w-md">
+    <h2 class="text-2xl font-bold mb-4 text-white">Register</h2>
+    <input [(ngModel)]="username" name="usernameInput" placeholder="Username"
+      class="w-full mb-4 p-2 border border-gray-700 bg-gray-700 text-white placeholder-gray-400 rounded" />
+    <input [(ngModel)]="email" name="emailInput" placeholder="Email"
+      class="w-full mb-4 p-2 border border-gray-700 bg-gray-700 text-white placeholder-gray-400 rounded" />
+    <input [(ngModel)]="password" name="passwordInput" type="password" placeholder="Password"
+      class="w-full mb-4 p-2 border border-gray-700 bg-gray-700 text-white placeholder-gray-400 rounded" />
+    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white p-2 rounded">Register</button>
+  </form>
+</div>

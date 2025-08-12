@@ -1,0 +1,17 @@
+<div class="bg-gray-900 min-h-screen p-6" style="min-height: calc(100vh - 3.5rem)">
+<div class="container mx-auto bg-gray-900 rounded-lg shadow-md">
+  <h1 class="text-3xl font-bold mb-4 text-emerald-600">Comments</h1>
+  <h1 class="text-3xl font-bold mb-4 text-white">{{ topicName }}</h1>
+  
+  <div *ngFor="let comment of comments" class="mt-2 p-4 border-b border-gray-700">
+    <p class="text-emerald-300">[{{ comment.createdTime }}] {{ comment.author }} </p>
+    <p class="text-gray-300">{{ comment.content }}</p>
+  </div>
+  <div class="mt-6">
+    <textarea [(ngModel)]="newComment" class="w-full border border-gray-700 bg-gray-800 text-white p-2 rounded"
+      placeholder="Add a comment"></textarea>
+    <button (click)="addComment()" class="mt-2 bg-emerald-600 hover:bg-emerald-700 text-white p-2 rounded">Post
+      Comment</button>
+  </div>
+</div>
+</div>

@@ -1,0 +1,16 @@
+<nav class="bg-emerald-600 p-4">
+    <div class="container mx-auto flex justify-between items-center">
+        <!-- Left links -->
+        <div class="flex space-x-4">
+            <a *ngIf="ForumVisible" routerLink="forum" class="text-white hover:text-gray-800">Forum</a>
+            <a *ngIf="AdminPanelVisible" routerLink="admin-panel" class="text-white hover:text-gray-800">Admin Panel</a>
+            <a *ngIf="ModeratorPanelVisible" routerLink="moderator-panel"
+                class="text-white hover:text-gray-800">Moderator Panel</a>
+        </div>
+        <!-- Right links -->
+        <div class="flex space-x-4">
+            <a routerLink="login" class="text-white hover:text-gray-800">Login</a>
+            <a routerLink="register" class="text-white hover:text-gray-800">Register</a>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,42 @@
+<div class="bg-gray-900 min-h-screen p-6">
+  <div class="container mx-auto">
+    <h1 class="text-3xl font-bold mb-6 text-emerald-600">Moderator Panel</h1>
+
+    <div *ngFor="let comment of displayedComments" class="bg-gray-800 rounded-lg shadow-lg p-6 mb-4">
+      <!-- Comment Details -->
+      <div class="mb-4">
+        <h2 class="text-xl font-bold text-white">{{ comment.author }}</h2>
+        <p class="text-gray-400 text-sm">{{ comment.createdTime }}</p>
+      </div>
+
+      <!-- Editable Comment Content -->
+      <textarea [(ngModel)]="comment.content" class="w-full bg-gray-700 text-white p-2 rounded mb-4"
+        rows="3"></textarea>
+
+      <!-- Action Buttons -->
+      <div class="flex justify-end ">
+        <button *ngIf="AllowVisible" (click)="allowComment(comment)"
+          class="bg-emerald-800 hover:bg-green-700 text-white px-4 py-2 rounded">
+          Allow
+        </button>
+
+        <button *ngIf="EditVisible" (click)="editComment(comment)"
+          class="bg-cyan-800 hover:bg-cyan-700 text-white px-4 py-2 rounded ml-2">
+          Edit
+        </button>
+
+        <button *ngIf="DeleteVisible" (click)="deleteComment(comment)"
+          class="bg-red-800 hover:bg-red-700 text-white px-4 py-2 rounded ml-2">
+          Delete
+        </button>
+        <!-- Option to Save the Edited Comment if needed -->
+
+      </div>
+    </div>
+
+    <!-- Display message if no more comments -->
+    <div *ngIf="displayedComments.length === 0" class="text-white text-center mt-6">
+      <p>No pending comments for moderation.</p>
+    </div>
+  </div>
+</div>

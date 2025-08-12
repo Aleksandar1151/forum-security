@@ -1,0 +1,18 @@
+<div class="flex flex-col items-center justify-center min-h-screen bg-gray-900"
+    style="min-height: calc(100vh - 3.5rem)">
+    <form (submit)="verify()" class="bg-gray-800 p-6 rounded-lg shadow-md w-120 max-h-screen overflow-auto">
+
+
+        <div *ngIf="verificationFailed" class="bg-red-600 text-white p-2 mb-4 w-full rounded">
+            Verification code is incorrect. Please try again.
+        </div>
+
+        <h3 class="w-120 mb-4 text-emerald-300">An email with a verification code was sent</h3>
+        <h2 class="text-2xl font-bold mb-4 text-white">Insert verification code</h2>
+        <input [(ngModel)]="verificationCode" name="verificationCodeInput" placeholder="Verification Code"
+            class="w-full mb-4 p-2 border border-gray-700 bg-gray-700 text-white placeholder-gray-400" />
+        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white p-2 rounded">
+            Verify
+        </button>
+    </form>
+</div>

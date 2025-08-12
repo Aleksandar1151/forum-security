@@ -1,0 +1,110 @@
+<div class="bg-gray-900 min-h-screen" style="min-height: calc(100vh - 3.5rem)">
+  <div class="container mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-6 text-emerald-600">Admin Panel</h1>
+
+    <!-- Main grid layout for table and form -->
+    <div class="grid grid-cols-2 gap-6">
+      <!-- Table on the left side -->
+      <div>
+        <div class="bg-gray-800 rounded-lg shadow-lg overflow-x-auto">
+          <table class="min-w-full table-auto divide-y divide-gray-700">
+            <thead class="bg-gray-700">
+              <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Username</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Role</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Permissions
+                </th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Save</th>
+              </tr>
+            </thead>
+            <tbody class="bg-gray-800 divide-y divide-gray-700">
+              <tr *ngFor="let displayUser of displayUsers" class="hover:bg-gray-700">
+                <!-- Username Column -->
+                <td class="px-6 py-4 text-sm font-medium text-white">{{ displayUser.username }}</td>
+
+                <!-- Role Dropdown Column -->
+                <td class="px-6 py-4 text-sm text-gray-400">
+                  <select [(ngModel)]="displayUser.role" (change)="onRoleChange(displayUser, $event)"
+                    *ngIf="displayUser.role !== 'admin'" class="bg-gray-700 text-white rounded">
+                    <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+                  </select>
+                  <span *ngIf="displayUser.role === 'admin'" class="text-white">{{ displayUser.role }}</span>
+                </td>
+
+                <!-- Permissions Column (Allow, Edit, Delete) as checkboxes -->
+                <td class="px-6 py-4 text-sm text-gray-400">
+                  <div *ngIf="displayUser.role === 'moderator'">
+                    <label class="text-white">
+                      <input type="checkbox" [checked]="displayUser.permission[0] === '1'"
+                        (change)="onPermissionChange(displayUser, 0, $event)">
+                      Allow
+                    </label>
+                    <label class="text-white ml-4">
+                      <input type="checkbox" [checked]="displayUser.permission[1] === '1'"
+                        (change)="onPermissionChange(displayUser, 1, $event)">
+                      Edit
+                    </label>
+                    <label class="text-white ml-4">
+                      <input type="checkbox" [checked]="displayUser.permission[2] === '1'"
+                        (change)="onPermissionChange(displayUser, 2, $event)">
+                      Delete
+                    </label>
+                  </div>
+
+                  <div *ngIf="displayUser.role === 'admin'">
+                    <label class="text-white">
+                      <input type="checkbox" checked disabled>
+                      Allow
+                    </label>
+                    <label class="text-white ml-4">
+                      <input type="checkbox" checked disabled>
+                      Edit
+                    </label>
+                    <label class="text-white ml-4">
+                      <input type="checkbox" checked disabled>
+                      Delete
+                    </label>
+                  </div>
+                </td>
+
+                <!-- Save Button Column -->
+                <td class="px-6 py-4 text-sm text-gray-400">
+                  <button (click)="saveUser(displayUser)"
+                    class="bg-emerald-700 hover:bg-emerald-500 text-white px-4 py-1 rounded">Save</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Form on the right side -->
+      <div>
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+          <h2 class="text-2xl font-bold text-emerald-600 mb-4">Create New Topic</h2>
+          <form (submit)="createNewTopic()">
+            <!-- Title input -->
+            <div class="mb-4">
+              <label for="title" class="block text-sm font-medium text-gray-300">Title</label>
+              <input type="text" id="title" [(ngModel)]="newTopic.title" name="title"
+                class="w-full mt-2 p-2 bg-gray-700 text-white rounded">
+            </div>
+
+            <!-- Description input -->
+            <div class="mb-4">
+              <label for="description" class="block text-sm font-medium text-gray-300">Description</label>
+              <textarea id="description" [(ngModel)]="newTopic.description" name="description"
+                class="w-full mt-2 p-2 bg-gray-700 text-white rounded" rows="4"></textarea>
+            </div>
+
+            <!-- Create New Topic button -->
+            <div>
+              <button type="submit" class="bg-emerald-700 hover:bg-emerald-500 text-white px-4 py-2 rounded">Create New
+                Topic</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
